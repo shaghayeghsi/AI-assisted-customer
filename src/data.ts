@@ -1,0 +1,9 @@
+import type { Ticket } from './types'
+export const seedTickets: Ticket[] = [
+  {id:'SF-2048',customer:'Olivia Rhye',email:'olivia@example.com',subject:'Package has not arrived',message:'My order was expected three days ago and tracking has not changed.',category:'Shipping',priority:'Urgent',status:'Open',assignee:'Unassigned',created_at:'2026-11-23T08:35:00Z',sentiment:'Frustrated'},
+  {id:'SF-2047',customer:'Phoenix Baker',email:'phoenix@example.com',subject:'Refund request for order #8831',message:'The item arrived damaged. I would like to request a refund.',category:'Refund',priority:'High',status:'In progress',assignee:'Maya Chen',created_at:'2026-11-23T07:20:00Z',sentiment:'Negative'},
+  {id:'SF-2046',customer:'Lana Steiner',email:'lana@example.com',subject:'How can I change my address?',message:'I entered the wrong delivery address. Can it still be updated?',category:'Account',priority:'Medium',status:'Waiting',assignee:'Alex Morgan',created_at:'2026-11-22T15:10:00Z',sentiment:'Neutral'},
+  {id:'SF-2045',customer:'Demi Wilkinson',email:'demi@example.com',subject:'Thank you for the quick help',message:'Everything is sorted now. Appreciate the support!',category:'General',priority:'Low',status:'Resolved',assignee:'Maya Chen',created_at:'2026-11-22T11:45:00Z',sentiment:'Positive'},
+  {id:'SF-2044',customer:'Candice Wu',email:'candice@example.com',subject:'Charged twice for one order',message:'My card statement shows two charges for the same purchase.',category:'Billing',priority:'Urgent',status:'Open',assignee:'Unassigned',created_at:'2026-11-22T09:00:00Z',sentiment:'Frustrated'},
+  {id:'SF-2043',customer:'Natali Craig',email:'natali@example.com',subject:'Product size information',message:'Could you share the measurements for the medium size?',category:'Product',priority:'Low',status:'Resolved',assignee:'Alex Morgan',created_at:'2026-11-21T13:30:00Z',sentiment:'Neutral'}
+]

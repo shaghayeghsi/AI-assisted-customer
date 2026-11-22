@@ -1,0 +1,19 @@
+{
+  "name": "SupportFlow - Ticket Created Notification",
+  "nodes": [
+    {
+      "parameters": {"httpMethod": "POST", "path": "supportflow-ticket-created", "responseMode": "onReceived", "options": {}},
+      "id": "1", "name": "Ticket Webhook", "type": "n8n-nodes-base.webhook", "typeVersion": 2, "position": [240, 300],
+      "webhookId": "supportflow-ticket-created"
+    },
+    {
+      "parameters": {"jsCode": "const body = $json.body ?? $json;\nif (!body.ticket_id || !body.subject) { throw new Error('ticket_id and subject are required'); }\nreturn [{ json: { ticket_id: body.ticket_id, subject: body.subject, priority: body.priority ?? 'Medium', customer: body.customer ?? 'Unknown', received_at: new Date().toISOString() } }];"},
+      "id": "2", "name": "Validate Ticket Payload", "type": "n8n-nodes-base.code", "typeVersion": 2, "position": [480, 300]
+    }
+  ],
+  "connections": {"Ticket Webhook": {"main": [[{"node": "Validate Ticket Payload", "type": "main", "index": 0}]]}},
+  "active": false,
+  "settings": {"executionOrder": "v1"},
+  "pinData": {},
+  "versionId": "supportflow-starter-v1"
+}
