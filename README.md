@@ -123,6 +123,3 @@ Only list AI coding tools in your portfolio that you actually used. Document the
 - [ ] Add a real server-side LLM integration
 - [ ] Deploy and add a public demo URL
 
-## License
-
-MIT
