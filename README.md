@@ -1,33 +1,57 @@
 # SupportFlow AI
 
-**An AI-assisted customer support workspace for triaging, managing, and responding to customer tickets.**
+**An AI-assisted customer support workspace for managing tickets, streamlining support operations, and exploring AI-powered customer service workflows.**
 
-SupportFlow AI is a portfolio SaaS prototype built to demonstrate AI-assisted product development, frontend engineering, backend integration, database design, workflow automation, and practical product thinking.
+SupportFlow AI is a portfolio SaaS prototype designed to demonstrate practical product development, AI-assisted coding, frontend engineering, database integration, and business workflow automation. It provides a modern workspace for managing customer support tickets, monitoring support activity, and preparing AI-assisted responses.
 
-> **Current status:** UI and demo-mode ticket workflows are implemented. Supabase persistence is scaffolded and can be enabled after applying the SQL schema and configuring environment variables. Live LLM generation and end-to-end n8n delivery are integration steps, not claimed as complete in this starter.
+## Key Features
 
-## Product capabilities
+- **Support Dashboard:** Overview of support activity, ticket statistics, KPIs, and weekly ticket volume.
+- **Ticket Management:** Create, search, filter, view, and update customer support tickets.
+- **Ticket Details:** Access ticket information, status, priority, and customer context.
+- **AI-Assisted Replies:** Interactive reply-drafting interface demonstrating the intended AI-assisted support workflow.
+- **Database Integration:** Supabase schema for tickets, customer profiles, and ticket events.
+- **Workflow Automation:** n8n webhook starter for processing ticket-created notifications.
+- **Responsive Interface:** Modern dashboard optimized for desktop and mobile devices.
 
-- Support dashboard with ticket KPIs and a weekly volume chart
-- Ticket inbox with search and status filtering
-- Ticket details, status updates, and customer context
-- Create-ticket workflow
-- AI-assisted reply draft interaction (demo placeholder; not a live model call)
-- Supabase schema for tickets, profiles, and ticket events
-- n8n webhook starter for ticket-created notifications
-- Responsive layout for desktop and mobile
+## Technology Stack
 
-## Tech stack
+- React
+- TypeScript
+- Vite
+- Supabase (PostgreSQL)
+- Recharts
+- n8n
+- Lucide Icons
 
-- React + TypeScript + Vite
-- Supabase (PostgreSQL and Auth-ready schema)
-- Recharts for dashboard visualization
-- n8n for workflow automation
-- Lucide icons
+## Project Architecture
 
-## Run locally
+The application is organized around three main components:
 
-Requirements: Node.js 20+ and npm.
+1. **Frontend:** A React and TypeScript interface for ticket management, dashboard analytics, and support workflows.
+2. **Data Layer:** Supabase integration and database schema for persistent ticket storage and related records.
+3. **Automation Layer:** An n8n webhook workflow designed to receive ticket events and support external notification integrations.
+
+## Current Implementation Status
+
+| Component | Status |
+|---|---|
+| Dashboard and analytics UI | Implemented |
+| Ticket creation and management | Implemented in demo mode |
+| Search and status filtering | Implemented |
+| Responsive interface | Implemented |
+| Supabase database schema | Provided |
+| Supabase ticket persistence | Starter integration |
+| AI-generated replies | Demo interaction; live LLM not connected |
+| n8n notification workflow | Starter workflow |
+| Authentication and organization-level access | Not yet implemented |
+| Deployment | Future step |
+
+**Important:** The current version is a functional UI prototype with demo-mode workflows and starter integrations. Supabase persistence requires configuration. Live LLM generation, complete authentication, production-grade authorization, and end-to-end notification delivery are not yet implemented.
+
+## Getting Started
+
+**Requirements:** Node.js 20+ and npm.
 
 ```bash
 git clone https://github.com/YOUR_USERNAME/supportflow-ai.git
@@ -37,17 +61,19 @@ cp .env.example .env
 npm run dev
 ```
 
-Open the local URL printed by Vite (usually `http://localhost:5173`).
+Open the local URL provided by Vite, usually `http://localhost:5173`.
 
-The app runs in demo mode by default using seeded in-memory data. Changes are reset on page refresh.
+The application runs in demo mode by default. Demo data is stored in memory and resets when the page is refreshed.
 
-## Enable Supabase persistence
+## Supabase Configuration
 
-1. Create a project at [Supabase](https://supabase.com/).
-2. Open SQL Editor and run `supabase/schema.sql`.
-3. Copy the Project URL and anon/public key into `.env`.
+To enable database persistence:
+
+1. Create a project in [Supabase](https://supabase.com/).
+2. Execute `supabase/schema.sql` in the SQL Editor.
+3. Configure the project URL and public anon key in `.env`.
 4. Set `VITE_DEMO_MODE=false`.
-5. Restart the Vite dev server.
+5. Restart the development server.
 
 ```env
 VITE_SUPABASE_URL=https://YOUR_PROJECT.supabase.co
@@ -55,71 +81,57 @@ VITE_SUPABASE_ANON_KEY=YOUR_SUPABASE_ANON_KEY
 VITE_DEMO_MODE=false
 ```
 
-**Important:** The current starter uses Supabase persistence for ticket insert and status update. It does not yet include the complete sign-in/sign-up screens or organization-level authorization. Do not expose service-role keys in frontend environment variables. Before real customer use, implement authentication, tenant-scoped RLS, role permissions, audit logging, and server-side validation.
+The current integration supports ticket insertion and status updates. Authentication, organization-level authorization, and production-grade access control require further development. Never expose Supabase service-role keys in frontend environment variables.
 
-## Import the n8n workflow
+## n8n Workflow Integration
 
-1. Open your n8n instance.
-2. Choose **Import from File**.
-3. Select `n8n/supportflow-ticket-notification.json`.
-4. Activate the workflow and copy its Production Webhook URL.
-5. Send a POST request with this payload:
+The repository includes a starter workflow at:
 
-```json
-{
-  "ticket_id": "SF-2051",
-  "subject": "Delivery is delayed",
-  "priority": "High",
-  "customer": "Taylor Lee"
-}
+```text
+n8n/supportflow-ticket-notification.json
 ```
 
-The starter validates and normalizes the payload. Add an email, Slack, or CRM node and configure credentials to deliver real notifications.
+Import it into n8n using **Import from File**. The workflow receives and normalizes ticket notification payloads.
 
-## Suggested next integrations
+It can be extended with email, Slack, CRM, or other service integrations. Actual notification delivery requires configuring the relevant nodes, credentials, and webhook connection.
 
-- Connect an LLM through a server-side endpoint (Supabase Edge Function or FastAPI); keep provider API keys out of the browser.
-- Ground suggested replies in approved help-center content using RAG.
-- Add authentication and organization membership.
-- Add ticket assignment, comments, and event timeline.
-- Connect the n8n webhook to ticket creation after adding a server-side integration endpoint.
-- Add automated tests and deploy the frontend.
+## AI-Assisted Development Approach
 
-## Repository structure
+SupportFlow AI also demonstrates an iterative Vibe Coding workflow:
+
+- **Lovable:** Exploring product concepts and interface directions.
+- **Cursor:** Reviewing generated code, implementing application logic, and refactoring.
+- **Developer Review:** Inspecting generated changes, validating implementation decisions, and testing application workflows.
+
+The project emphasizes reviewing and understanding AI-generated code rather than relying on automatic code generation alone.
+
+## Future Development
+
+- Integrate an LLM through a secure server-side API.
+- Implement RAG-based response suggestions grounded in approved support documentation.
+- Add authentication and organization-level access control.
+- Introduce ticket assignment, comments, and event history.
+- Connect ticket creation to automated n8n workflows.
+- Add automated tests and deployment.
+
+## Project Structure
 
 ```text
 src/
-  App.tsx                 Main dashboard and ticket workflows
-  data.ts                 Demo ticket fixtures
-  lib/supabase.ts         Supabase client configuration
-  types.ts                Shared domain types
-  styles.css              Responsive product styling
+  App.tsx
+  data.ts
+  lib/
+    supabase.ts
+  types.ts
+  styles.css
+
 supabase/
-  schema.sql              Database schema and starter RLS
+  schema.sql
+
 n8n/
   supportflow-ticket-notification.json
 ```
 
-## AI-assisted development workflow
+## Project Purpose
 
-This project is suitable for an iterative Vibe Coding workflow:
-
-1. Use Lovable to explore product layout and UI directions.
-2. Use Cursor to inspect generated code, implement domain logic, and refactor.
-3. Review every generated change, run the app, and test key user flows.
-4. Keep prompts, implementation decisions, and known limitations documented.
-
-Only list AI coding tools in your portfolio that you actually used. Document the prompts and the changes you personally reviewed.
-
-## Validation checklist
-
-- [ ] `npm install`
-- [ ] `npm run build`
-- [ ] Create a ticket in demo mode
-- [ ] Search and filter tickets
-- [ ] Open a ticket and update its status
-- [ ] Apply Supabase schema and verify persistence
-- [ ] Import and test the n8n webhook
-- [ ] Add a real server-side LLM integration
-- [ ] Deploy and add a public demo URL
-
+SupportFlow AI explores how modern frontend technologies, database services, AI-assisted development, and workflow automation can be used to build a customer support management product. It serves as a practical portfolio project focused on product thinking, application architecture, and the gradual integration of AI capabilities into business workflows.
