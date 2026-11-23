@@ -146,32 +146,6 @@ SupportFlow AI explores how modern frontend technologies, database services, AI-
 
 ## System Workflow
 
-flowchart TD
-    A["مشتری"] --> B["ثبت درخواست پشتیبانی"]
-    B --> C["SupportFlow AI"]
-    
-    C --> D["مدیریت تیکت"]
-    D --> E["ثبت اطلاعات و وضعیت درخواست"]
-    
-    E --> F["پایگاه داده Supabase"]
-    E --> G["داشبورد مدیریتی"]
-    
-    G --> H["بررسی و پیگیری تیکت"]
-    H --> I{"نیاز به پاسخ هوشمند؟"}
-    
-    I -->|بله| J["مدل زبانی LLM"]
-    J --> K["تولید پاسخ پیشنهادی"]
-    K --> L["بررسی و تأیید پاسخ"]
-    
-    I -->|خیر| M["پاسخ توسط اپراتور"]
-    
-    L --> N["به‌روزرسانی وضعیت تیکت"]
-    M --> N
-    
-    N --> O["ثبت رویداد و تاریخچه"]
-    O --> P["n8n Workflow"]
-    P --> Q["ارسال اعلان و اتصال به سرویس‌های خارجی"]
-    Q --> R["پیگیری درخواست مشتری"]
 
 
 ![SupportFlow AI Workflow](docs/supportflow-ai-workflow.png)
